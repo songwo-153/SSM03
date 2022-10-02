@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>添加信息</title>
+    <!--项目的web.xml的DispatcherServlet处理不了静态资源，
+要让tomcat的web.xml的defaultServlet来处理，
+所以需要在springmvc.xml里配置DefaultServlet-->
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
+</head>
+<body>
+
+
+    <form th:action="@{/employee/page/1}" method="post">
+
+        <table>
+            <tr>
+                <th colspan="2">添加信息</th>
+            </tr>
+            <tr>
+                <td>员工姓名</td>
+                <td>
+                    <input type="text" name="empName">
+                </td>
+            </tr>
+            <tr>
+                <td>年龄</td>
+                <td>
+                    <input type="text" name="age">
+                </td>
+            </tr>
+            <tr>
+                <td>性别</td>
+                <td>
+                    <input type="radio" name="gender" value="1"> male<!--单选按钮-->
+                    <input type="radio" name="gender" value="0"> female<!--单选按钮-->
+                </td>
+            </tr>
+            <tr>
+                <td>邮箱</td>
+                <td>
+                    <input type="text" name="email">
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <input type="submit" name="add">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
+</body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>更新信息</title>
+    <!--项目的web.xml的DispatcherServlet处理不了静态资源，
+要让tomcat的web.xml的defaultServlet来处理，
+所以需要在springmvc.xml里配置DefaultServlet-->
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
+</head>
+<body>
+
+
+<form th:action="@{'/employee/'+${employee.empId}}" method="post">
+    <input type="hidden" name="_method" value="put">
+    <input type="hidden" name="empId" th:value="${employee.empId}">
+    <table>
+        <tr>
+            <th colspan="2">添加信息</th>
+        </tr>
+        <tr>
+            <td>员工name</td>
+            <td>
+                <input type="text" name="empName" th:value="${employee.empName}">
+            </td>
+        </tr>
+        <tr>
+            <td>员工age</td>
+            <td>
+                <input type="text" name="age" th:value="${employee.age}">
+            </td>
+        </tr>
+        <tr>
+            <td>员工gender</td>
+            <td>
+                <input type="radio" name="gender" value="1" th:field="${employee.gender}"> male<!--单选按钮-->
+                <input type="radio" name="gender" value="0" th:field="${employee.gender}"> female<!--单选按钮-->
+            </td>
+        </tr>
+        <tr>
+            <td>员工email</td>
+            <td>
+                <input type="text" name="email" th:value="${employee.email}">
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="add">
+            </td>
+        </tr>
+    </table>
+</form>
+
+
+</body>
+</html>

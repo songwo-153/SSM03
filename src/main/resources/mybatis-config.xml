@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--1、引入jdbc.properties文件  
+    在此文件中可以使用${}的方式访问
+    properties文件里的values值-->
+    <!--<properties resource="jdbc.properties"/>-->
+
+    <!--2、将数据库的字段下划线映射为java实体类的属性名驼峰-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--3、设置类型别名-->
+    <!--        方法一：这种太麻烦，如果有多个pojo类，就要引入多次，在<typeAliases>中-->
+    <!--        <typeAlias type="com.jmu.pojo.User" alias="User" />-->
+    <!--        方法二：直接一次就可以将所有引入-->
+    <!--以包为单位，将包下所有的类型设置默认的类型别名，即别名就是该包下的所有的类名且不区分大小写-->
+    <!--<typeAliases>
+        <package name="com.jmu.pojo"/>
+    </typeAliases>-->
+
+    <!--4、设置连接数据库的环境-->
+<!--    <environments default="development">-->
+<!--        <environment id="development">-->
+<!--            <transactionManager type="JDBC"/>-->
+<!--            <dataSource type="POOLED">-->
+<!--                <property name="driver" value="${jdbc.driver}"/>-->
+<!--                <property name="url" value="${jdbc.url}"/>-->
+<!--                <property name="username" value="${jdbc.username}"/>-->
+<!--                <property name="password" value="${jdbc.password}"/>-->
+<!--            </dataSource>-->
+<!--        </environment>-->
+<!--    </environments>-->
+
+    <!--5、引入映射文件-->
+    <!--        方法一：这种太麻烦，如果有多个pojo类，就要引入多次，在<mappers>中-->
+    <!--          <mapper resource="mapper/userMapper.xml"></mapper>-->
+    <!--        方法二：直接一次就可以将所有引入
+                以包为单位引入映射文件 要求：
+                1、mapper接口所在的包要和映射文件所在的包一致
+                2、mapper接口要和映射文件的名字一致
+    -->
+<!--    <mappers>-->
+<!--        <package name="com.jmu.mapper"/>-->
+<!--    </mappers>-->
+
+    <!--6、配置分页插件-->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor"></plugin>
+    </plugins>
+</configuration>

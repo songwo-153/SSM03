@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>员工列表</title>
+    <link rel="stylesheet" th:href="@{/static/css/index_work.css}">
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="6">
+            <div><span><b style="text-align: center;">员工列表</b>
+                <form th:action="@{/employee/page/1}" method="get" style="text-align: right;">
+                    <input type="text" name="empName">
+                    <input type="submit" value="查询">
+                </form></span>
+            </div>
+        </th>
+    </tr>
+    <tr>
+        <th>序号</th>
+        <th>员工姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+        <th>邮箱</th>
+        <th>操作( <a href="">添加</a> )</th>
+    </tr>
+    <tr th:each="employee,status:${page1.list}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${employee.empName}"></td>
+        <td th:text="${employee.age}"></td>
+        <td th:text="${employee.gender}"></td>
+        <td th:text="${employee.email}"></td>
+        <td>
+            <a href="">删除</a>
+            <a href="">修改</a>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="6">
+            <span th:if="${page1.hasPreviousPage}">
+                <a th:href="@{/employee/page/1}">首页</a>
+                <a th:href="@{'/employee/page/'+${page1.prePage}}">上一页</a>
+            </span>
+            <span th:each="num : ${page1.navigatepageNums}">
+                <a th:if="${page1.pageNum==num}"
+                 th:href="@{'/employee/page/'+${num}}" th:text="'['+${num}+']'" style="color:red;"></a>
+                <a th:if="${page1.pageNum!=num}" th:href="@{'/employee/page/'+${num}}" th:text="${num} "></a>
+            </span>
+            <span th:if="${page1.hasNextPage}">
+                <a th:href="@{'/employee/page/'+${page1.nextPage}}">下一页</a>
+                <a th:href="@{'/employee/page/'+${page1.pages}}">末页</a>
+            </span>
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>
